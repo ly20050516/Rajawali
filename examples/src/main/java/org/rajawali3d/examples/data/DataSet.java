@@ -42,6 +42,7 @@ import org.rajawali3d.examples.examples.loaders.AsyncLoadModelFragment;
 import org.rajawali3d.examples.examples.loaders.AwdFragment;
 import org.rajawali3d.examples.examples.loaders.FBXFragment;
 import org.rajawali3d.examples.examples.loaders.LoadModelFragment;
+import org.rajawali3d.examples.examples.loaders.LoadPlasticFragment;
 import org.rajawali3d.examples.examples.loaders.LoaderGCodeFragment;
 import org.rajawali3d.examples.examples.materials.AnimatedGIFTextureFragment;
 import org.rajawali3d.examples.examples.materials.BumpMappingFragment;
@@ -158,6 +159,7 @@ public final class DataSet {
                 new Example(R.string.example_loaders_load_obj, LoadModelFragment.class),
                 new Example(R.string.example_loaders_load_fbx, FBXFragment.class),
                 new Example(R.string.example_loaders_load_gcode, LoaderGCodeFragment.class),
+                new Example(R.string.example_loaders_load_plastic, LoadPlasticFragment.class),
         }));
         categories.add(new Category(R.string.category_animation, new Example[]{
                 new Example(R.string.example_animation_basic, AnimationFragment.class),

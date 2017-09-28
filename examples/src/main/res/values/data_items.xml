@@ -58,6 +58,7 @@
     <string name="example_loaders_load_obj">Load OBJ Model</string>
     <string name="example_loaders_load_fbx">FBX Scene Importer</string>
     <string name="example_loaders_load_gcode">GCode Tool Paths</string>
+    <string name="example_loaders_load_plastic">load plastic</string>
 
     <string name="example_animation_basic">Basic</string>
     <string name="example_animation_bezier">Bezier Path Animation</string>

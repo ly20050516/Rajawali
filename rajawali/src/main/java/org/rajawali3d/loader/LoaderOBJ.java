@@ -281,7 +281,7 @@ public class LoaderOBJ extends AMeshLoader {
 					if(currentObjHasFaces) {
 						objIndices.add(currObjIndexData);
 						currObjIndexData = new ObjIndexData(new Object3D(generateObjectName()));
-						RajLog.i("Parsing object: " + currObjIndexData.targetObj.getName());
+						RajLog.i("USE_MATERIAL Parsing object: " + currObjIndexData.targetObj.getName() + "；currentMaterialName = " + currentMaterialName);
 						addChildSetParent(currentGroup, currObjIndexData.targetObj);
 						currentObjHasFaces = false;
 					}
