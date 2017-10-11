@@ -35,13 +35,14 @@ import javax.microedition.khronos.opengles.GL10;
  */
 public class TextureView extends android.view.TextureView implements ISurface {
     private final static String TAG = "TextureView";
-    private final static boolean LOG_ATTACH_DETACH = false;
-    private final static boolean LOG_THREADS = false;
-    private final static boolean LOG_PAUSE_RESUME = false;
+    private final static boolean LOG_DEBUG = true;
+    private final static boolean LOG_ATTACH_DETACH = false || LOG_DEBUG;
+    private final static boolean LOG_THREADS = false  || LOG_DEBUG;
+    private final static boolean LOG_PAUSE_RESUME = false  || LOG_DEBUG;
     private final static boolean LOG_SURFACE = true;
-    private final static boolean LOG_RENDERER = false;
-    private final static boolean LOG_RENDERER_DRAW_FRAME = false;
-    private final static boolean LOG_EGL = false;
+    private final static boolean LOG_RENDERER = false  || LOG_DEBUG;
+    private final static boolean LOG_RENDERER_DRAW_FRAME = false  || LOG_DEBUG;
+    private final static boolean LOG_EGL = false  || LOG_DEBUG;
 
     private static final GLThreadManager sGLThreadManager = new GLThreadManager();
 
@@ -1193,7 +1194,7 @@ public class TextureView extends android.view.TextureView implements ISurface {
                             }
 
                             // By design, this is the only place in a RajawaliGLThread thread where we wait().
-                            if (LOG_THREADS) {
+                            if (LOG_THREADS && false) {
                                 Log.i("RajawaliGLThread", "waiting tid=" + getId()
                                     + " mHaveEglContext: " + mHaveEglContext
                                     + " mHaveEglSurface: " + mHaveEglSurface
@@ -1266,7 +1267,7 @@ public class TextureView extends android.view.TextureView implements ISurface {
                         sizeChanged = false;
                     }
 
-                    if (LOG_RENDERER_DRAW_FRAME) {
+                    if (LOG_RENDERER_DRAW_FRAME && false) {
                         Log.w("RajawaliGLThread", "onDrawFrame tid=" + getId());
                     }
                     {

@@ -15,6 +15,8 @@ package org.rajawali3d;
 import android.graphics.Color;
 import android.opengl.GLES20;
 import android.support.annotation.NonNull;
+import android.util.Log;
+
 import org.rajawali3d.bounds.BoundingBox;
 import org.rajawali3d.bounds.IBoundingVolume;
 import org.rajawali3d.cameras.Camera;
@@ -306,6 +308,7 @@ public class Object3D extends ATransformable3D implements Comparable<Object3D>, 
                 GLES20.glBindBuffer(GLES20.GL_ELEMENT_ARRAY_BUFFER, mGeometry.getIndexBufferInfo().bufferHandle);
                 GLES20.glDrawElements(mDrawingMode, mGeometry.getNumIndices(), bufferType, 0);
                 GLES20.glBindBuffer(GLES20.GL_ELEMENT_ARRAY_BUFFER, 0);
+                RajLog.systemInformation();
             }
             if (!mIsPartOfBatch && !mRenderChildrenAsBatch && sceneMaterial == null) {
                 material.unbindTextures();

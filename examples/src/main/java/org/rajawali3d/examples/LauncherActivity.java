@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 import org.rajawali3d.examples.wallpaper.WallpaperPreferenceActivity;
+import org.rajawali3d.util.RajLog;
 
 public class LauncherActivity extends AppCompatActivity {
 
@@ -37,6 +38,8 @@ public class LauncherActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher);
+
+        RajLog.setDebugEnabled(true);
 
         if (VERSION.SDK_INT >= VERSION_CODES.M) {
             requestPermissions(PERMISSIONS, REQUEST_PERMISSIONS);

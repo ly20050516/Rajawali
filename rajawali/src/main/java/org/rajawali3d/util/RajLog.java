@@ -80,14 +80,22 @@ public final class RajLog {
         sb.append("Renderer : ").append(GLES20.glGetString(GLES20.GL_RENDERER)).append("\n");
         sb.append("Version : ").append(GLES20.glGetString(GLES20.GL_VERSION)).append("\n");
 
-        String extensions = GLES20.glGetString(GLES20.GL_EXTENSIONS);
-        String[] ext = extensions.split(" ");
-        int extLength = ext.length;
+        sb.append("GL_MAX_VERTEX_ATTRIBS :").append(GLES20.glGetString(GLES20.GL_MAX_VERTEX_ATTRIBS)).append("\n");
+        sb.append("GL_MAX_VERTEX_UNIFORM_VECTORS :").append(GLES20.glGetString(GLES20.GL_MAX_VERTEX_UNIFORM_VECTORS)).append("\n");
+        sb.append("GL_MAX_VARYING_VECTORS :").append(GLES20.glGetString(GLES20.GL_MAX_VARYING_VECTORS)).append("\n");
+        sb.append("GL_UNSIGNED_INT :").append(GLES20.glGetString(GLES20.GL_UNSIGNED_INT)).append("\n");
 
-        if (extLength > 0) {
-            sb.append("Extensions : ").append('\n').append(ext[0]).append('\n');
-            for (int i = 1; i < extLength; i++) {
-                sb.append(" : ").append(ext[i]).append('\n');
+
+        String extensions = GLES20.glGetString(GLES20.GL_EXTENSIONS);
+        if(extensions != null) {
+            String[] ext = extensions.split(" ");
+            int extLength = ext.length;
+
+            if (extLength > 0) {
+                sb.append("Extensions : ").append('\n').append(ext[0]).append('\n');
+                for (int i = 1; i < extLength; i++) {
+                    sb.append(" : ").append(ext[i]).append('\n');
+                }
             }
         }
         sb.append("-=-=-=- /OpenGL Information -=-=-=-\n");
