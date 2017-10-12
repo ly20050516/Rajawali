@@ -107,7 +107,10 @@ public final class DataSet {
     @NonNull
     static List<Category> createCategories() {
         List<Category> categories = new LinkedList<>();
-        categories.add(new Category(R.string.category_general, new Example[]{
+        categories.add(
+
+                new Category(R.string.category_general, new Example[]{
+                        new Example(R.string.example_loaders_load_plastic, LoadPlasticFragment.class),
                 new Example(R.string.example_general_getting_started, BasicFragment.class),
                 new Example(R.string.example_general_skybox, SkyboxFragment.class),
                 new Example(R.string.example_general_collision_detection, CollisionDetectionFragment.class),
@@ -159,7 +162,7 @@ public final class DataSet {
                 new Example(R.string.example_loaders_load_obj, LoadModelFragment.class),
                 new Example(R.string.example_loaders_load_fbx, FBXFragment.class),
                 new Example(R.string.example_loaders_load_gcode, LoaderGCodeFragment.class),
-                new Example(R.string.example_loaders_load_plastic, LoadPlasticFragment.class),
+
         }));
         categories.add(new Category(R.string.category_animation, new Example[]{
                 new Example(R.string.example_animation_basic, AnimationFragment.class),

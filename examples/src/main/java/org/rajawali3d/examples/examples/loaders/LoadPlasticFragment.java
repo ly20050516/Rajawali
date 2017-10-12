@@ -8,6 +8,7 @@ import android.util.Log;
 
 import org.rajawali3d.Object3D;
 import org.rajawali3d.cameras.ArcballCamera;
+import org.rajawali3d.cameras.OrthographicCamera;
 import org.rajawali3d.examples.R;
 import org.rajawali3d.examples.examples.AExampleFragment;
 import org.rajawali3d.lights.DirectionalLight;
@@ -16,6 +17,7 @@ import org.rajawali3d.loader.ParsingException;
 import org.rajawali3d.materials.Material;
 import org.rajawali3d.materials.textures.ATexture;
 import org.rajawali3d.materials.textures.Texture;
+import org.rajawali3d.math.Quaternion;
 import org.rajawali3d.math.vector.Vector3;
 
 import java.util.Stack;
@@ -70,6 +72,17 @@ public class LoadPlasticFragment extends AExampleFragment {
         @Override
 		protected void initScene() {
 
+            OrthographicCamera orthoCam = new OrthographicCamera();
+            orthoCam.setLookAt(0,0,0);
+            orthoCam.enableLookAt();
+            orthoCam.setPosition(0.0,0.0,0.0);
+
+            orthoCam.setZoom(1.5f);
+
+
+            getCurrentScene().switchCamera(orthoCam);
+
+
 //            Stack<Vector3> points = createWhirl(6, 6f, 0, 0, .05f);
 //
 //            /**
@@ -90,50 +103,61 @@ public class LoadPlasticFragment extends AExampleFragment {
 //            anim.play();
 
 
-            getCurrentScene().setBackgroundColor(Color.BLUE);
+//            getCurrentScene().setBackgroundColor(Color.BLUE);
+//
+//            DirectionalLight key = new DirectionalLight(-3,-4,-5);
+//            key.setPower(2);
+//            getCurrentScene().addLight(key);
 
-            DirectionalLight key = new DirectionalLight(-3,-4,-5);
-            key.setPower(2);
-            getCurrentScene().addLight(key);
-
-//			LoaderOBJ objParser = new LoaderOBJ(this, R.raw.current_merged_obj);
+			LoaderOBJ objParser = new LoaderOBJ(this, R.raw.current_merged1);
 
             Object3D obj = null;
 			try {
+                long t1 = System.currentTimeMillis();
+                objParser.parse();
+                Log.d("LiuTag", "initScene: " + (System.currentTimeMillis() - t1));
+				mObjectGroup = objParser.getParsedObject();
+				mObjectGroup.setScale(0.00001f);
+                Material material = new Material();
+                material.useVertexColors(false);
+                material.setColorInfluence(0);
+                mObjectGroup.setMaterial(material);
+                mObjectGroup.getMaterial().addTexture(new Texture("plastic",R.drawable.current_merged1));
+				getCurrentScene().addChild(mObjectGroup);
 
-//				objParser.parse();
-//				mObjectGroup = objParser.getParsedObject();
-//				mObjectGroup.setScale(0.0001f);
-//                Material material = new Material();
-//                material.useVertexColors(false);
-//                material.setColorInfluence(0);
-//                mObjectGroup.setMaterial(material);
-//                mObjectGroup.getMaterial().addTexture(new Texture("plastic",R.drawable.current_merged1));
-//				getCurrentScene().addChild(mObjectGroup);
-//
-//
-//
+
+
+
 //                ArcballCamera arcball = new ArcballCamera(mContext, ((Activity)mContext).findViewById(R.id.content_frame));
 //                arcball.setPosition(0, 0, 40);
 //				arcball.setTarget(mObjectGroup);
 //
 //                getCurrentScene().replaceAndSwitchCamera(getCurrentCamera(), arcball);
 
-                LoaderOBJ loader = new LoaderOBJ(this, R.raw.current_merged3);
-                loader.parse();
-                obj = loader.getParsedObject();
-                obj.setScale(0.0001);
-                Log.d("LiuTag", "vertices=" + obj.getGeometry().getNumVertices());
-                getCurrentScene().addChild(obj);
+
+
+//                LoaderOBJ loader = new LoaderOBJ(this, R.raw.current_merged1);
+//                loader.parse();
+//                obj = loader.getParsedObject();
+//                obj.setScale(0.0001);
+//                Log.d("LiuTag", "vertices=" + obj.getGeometry().getNumVertices());
+//                Material material = new Material();
+//                obj.setMaterial(material);
+//                getCurrentScene().addChild(obj);
 
 			} catch (ParsingException e) {
 				Log.d("LiuTag", "initScene: " + e);
 				e.printStackTrace();
-			}
+			} catch (ATexture.TextureException e) {
+                e.printStackTrace();
+            }
 
-            getCurrentCamera().setPosition(-40,-40,20);
-            getCurrentCamera().setLookAt(obj.getPosition());
-		}
+//            getCurrentCamera().setPosition(-40,-40,20);
+//            getCurrentCamera().setLookAt(mObjectGroup.getPosition());
+
+
+
+        }
 
 	}
 
