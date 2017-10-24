@@ -109,7 +109,7 @@ public class LoadPlasticFragment extends AExampleFragment {
 //            key.setPower(2);
 //            getCurrentScene().addLight(key);
 
-			LoaderOBJ objParser = new LoaderOBJ(this, R.raw.current_merged1);
+			LoaderOBJ objParser = new LoaderOBJ(this, R.raw.head3d1024);
 
             Object3D obj = null;
 			try {
@@ -117,22 +117,22 @@ public class LoadPlasticFragment extends AExampleFragment {
                 objParser.parse();
                 Log.d("LiuTag", "initScene: " + (System.currentTimeMillis() - t1));
 				mObjectGroup = objParser.getParsedObject();
-				mObjectGroup.setScale(0.00001f);
+				mObjectGroup.setScale(0.1f);
                 Material material = new Material();
                 material.useVertexColors(false);
                 material.setColorInfluence(0);
                 mObjectGroup.setMaterial(material);
-                mObjectGroup.getMaterial().addTexture(new Texture("plastic",R.drawable.current_merged1));
+                mObjectGroup.getMaterial().addTexture(new Texture("plastic",R.drawable.head3d1024));
 				getCurrentScene().addChild(mObjectGroup);
 
 
 
 
-//                ArcballCamera arcball = new ArcballCamera(mContext, ((Activity)mContext).findViewById(R.id.content_frame));
-//                arcball.setPosition(0, 0, 40);
-//				arcball.setTarget(mObjectGroup);
-//
-//                getCurrentScene().replaceAndSwitchCamera(getCurrentCamera(), arcball);
+                ArcballCamera arcball = new ArcballCamera(mContext, ((Activity)mContext).findViewById(R.id.content_frame));
+                arcball.setPosition(0, 0, 40);
+				arcball.setTarget(mObjectGroup);
+
+                getCurrentScene().replaceAndSwitchCamera(getCurrentCamera(), arcball);
 
 
 
