@@ -2,7 +2,6 @@ package org.rajawali3d.examples.examples.loaders;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
@@ -11,13 +10,11 @@ import org.rajawali3d.cameras.ArcballCamera;
 import org.rajawali3d.cameras.OrthographicCamera;
 import org.rajawali3d.examples.R;
 import org.rajawali3d.examples.examples.AExampleFragment;
-import org.rajawali3d.lights.DirectionalLight;
 import org.rajawali3d.loader.LoaderOBJ;
 import org.rajawali3d.loader.ParsingException;
 import org.rajawali3d.materials.Material;
 import org.rajawali3d.materials.textures.ATexture;
 import org.rajawali3d.materials.textures.Texture;
-import org.rajawali3d.math.Quaternion;
 import org.rajawali3d.math.vector.Vector3;
 
 import java.util.Stack;
@@ -109,7 +106,7 @@ public class LoadPlasticFragment extends AExampleFragment {
 //            key.setPower(2);
 //            getCurrentScene().addLight(key);
 
-			LoaderOBJ objParser = new LoaderOBJ(this, R.raw.head3d1024);
+			LoaderOBJ objParser = new LoaderOBJ(this, R.raw.head3d1024_obj);
 
             Object3D obj = null;
 			try {
@@ -118,11 +115,11 @@ public class LoadPlasticFragment extends AExampleFragment {
                 Log.d("LiuTag", "initScene: " + (System.currentTimeMillis() - t1));
 				mObjectGroup = objParser.getParsedObject();
 				mObjectGroup.setScale(0.1f);
-                Material material = new Material();
-                material.useVertexColors(false);
-                material.setColorInfluence(0);
-                mObjectGroup.setMaterial(material);
-                mObjectGroup.getMaterial().addTexture(new Texture("plastic",R.drawable.head3d1024));
+//                Material material = new Material();
+//                material.useVertexColors(false);
+//                material.setColorInfluence(0);
+//                mObjectGroup.setMaterial(material);
+//                mObjectGroup.getMaterial().addTexture(new Texture("plastic",R.drawable.head3d1024));
 				getCurrentScene().addChild(mObjectGroup);
 
 
@@ -148,9 +145,10 @@ public class LoadPlasticFragment extends AExampleFragment {
 			} catch (ParsingException e) {
 				Log.d("LiuTag", "initScene: " + e);
 				e.printStackTrace();
-			} catch (ATexture.TextureException e) {
-                e.printStackTrace();
-            }
+			}
+//			catch (ATexture.TextureException e) {
+//                e.printStackTrace();
+//            }
 
 //            getCurrentCamera().setPosition(-40,-40,20);
 //            getCurrentCamera().setLookAt(mObjectGroup.getPosition());
